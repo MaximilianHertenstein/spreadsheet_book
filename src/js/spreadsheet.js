@@ -1,20 +1,19 @@
 (async () => {
 
-    const load = src => new Promise((res, rej) => {
-        const s = document.createElement("script");
-        s.src = src;
-        s.onload = res;
-        s.onerror = () => rej(new Error(`Fehler: ${src}`));
-        document.head.appendChild(s);
-    });
+    const load = src =>
+        new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = () =>
+                reject(new Error(`Fehler: ${src}`));
+            document.head.appendChild(script);
+        });
 
-    await load(
-        "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"
-    );
-
-    await load(
-        "https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/hyperformula.full.min.js"
-    );
+    await Promise.all([
+        load("https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"),
+        load("https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/hyperformula.full.min.js")
+    ]);
 
     const HF = window.HyperFormula;
 
@@ -29,6 +28,13 @@
         language: "deDE"
     });
 
+    const toGerman = formula =>
+        formula.replace(
+            /[A-Za-z_][A-Za-z0-9_.]*(?=\()/g,
+            name =>
+                HF.languages.deDE.functions[name.toUpperCase()] ?? name
+        );
+
     await load(
         "https://cdn.jsdelivr.net/npm/handsontable@17.1.0/dist/handsontable.full.min.js"
     );
@@ -38,6 +44,14 @@
     )) {
 
         el.dataset.initialized = "true";
+
+        const formulaBar = document.createElement("div");
+        formulaBar.className = "ods-formula-bar";
+
+        const tableDiv = document.createElement("div");
+
+        el.innerHTML = "";
+        el.append(formulaBar, tableDiv);
 
         try {
             const res = await fetch(el.dataset.file);
@@ -64,31 +78,19 @@
 
             const data = Array.from(
                 { length: range.e.r + 1 },
-                (_, r) => Array.from(
-                    { length: range.e.c + 1 },
-                    (_, c) => {
-                        const cell =
-                            ws[XLSX.utils.encode_cell({ r, c })];
+                (_, r) =>
+                    Array.from(
+                        { length: range.e.c + 1 },
+                        (_, c) => {
+                            const cell =
+                                ws[XLSX.utils.encode_cell({ r, c })];
 
-                        return cell?.f
-                            ? `=${cell.f}`
-                            : cell?.v ?? null;
-                    }
-                )
+                            return cell?.f
+                                ? `=${toGerman(cell.f)}`
+                                : cell?.v ?? null;
+                        }
+                    )
             );
-
-            el.innerHTML = "";
-
-            const formulaBar =
-                document.createElement("div");
-
-            formulaBar.className =
-                "ods-formula-bar";
-
-            const tableDiv =
-                document.createElement("div");
-
-            el.append(formulaBar, tableDiv);
 
             new Handsontable(tableDiv, {
                 data,
