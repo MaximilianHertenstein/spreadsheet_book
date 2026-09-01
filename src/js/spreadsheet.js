@@ -1,130 +1,115 @@
-(function () {
-    "use strict";
+(async () => {
 
-    const HT_VERSION = "17.1.0";
-    const HF_VERSION = "3.1.0";
-    const XLSX_VERSION = "0.20.3";
-    const LANGUAGE = "deDE";
+    const load = src => new Promise((res, rej) => {
+        const s = document.createElement("script");
+        s.src = src;
+        s.onload = res;
+        s.onerror = () => rej(new Error(`Fehler: ${src}`));
+        document.head.appendChild(s);
+    });
 
-    let libraries;
-    let HyperFormulaClass;
+    await load(
+        "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"
+    );
 
-    function loadScript(url) {
-        return new Promise((resolve, reject) => {
-            const script = document.createElement("script");
-            script.src = url;
-            script.onload = resolve;
-            script.onerror = () =>
-                reject(new Error(`Fehler beim Laden: ${url}`));
-            document.head.appendChild(script);
-        });
-    }
+    await load(
+        "https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/hyperformula.full.min.js"
+    );
 
-    async function loadLibraries() {
-        if (libraries) return libraries;
+    const HF = window.HyperFormula;
 
-        libraries = (async () => {
-            await loadScript(
-                `https://cdn.sheetjs.com/xlsx-${XLSX_VERSION}/package/dist/xlsx.full.min.js`
-            );
+    await load(
+        "https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/languages/deDE.js"
+    );
 
-            await loadScript(
-                `https://cdn.jsdelivr.net/npm/hyperformula@${HF_VERSION}/dist/hyperformula.full.min.js`
-            );
+    HF.registerLanguage("deDE", HF.languages.deDE);
 
-            HyperFormulaClass = window.HyperFormula;
+    const engine = HF.buildEmpty({
+        licenseKey: "internal-use-in-handsontable",
+        language: "deDE"
+    });
 
-            await loadScript(
-                `https://cdn.jsdelivr.net/npm/hyperformula@${HF_VERSION}/dist/languages/${LANGUAGE}.js`
-            );
+    await load(
+        "https://cdn.jsdelivr.net/npm/handsontable@17.1.0/dist/handsontable.full.min.js"
+    );
 
-            HyperFormulaClass.registerLanguage(
-                LANGUAGE,
-                HyperFormulaClass.languages[LANGUAGE]
-            );
+    for (const el of document.querySelectorAll(
+        ".ods-table[data-file]:not([data-initialized])"
+    )) {
 
-            await loadScript(
-                `https://cdn.jsdelivr.net/npm/handsontable@${HT_VERSION}/dist/handsontable.full.min.js`
-            );
-        })();
-
-        return libraries;
-    }
-
-    function worksheetToArray(ws) {
-        if (!ws["!ref"]) return [];
-
-        const range = XLSX.utils.decode_range(ws["!ref"]);
-        const data = [];
-
-        for (let r = 0; r <= range.e.r; r++) {
-            const row = [];
-
-            for (let c = 0; c <= range.e.c; c++) {
-                const cell = ws[XLSX.utils.encode_cell({ r, c })];
-
-                row.push(
-                    cell?.f ? `=${cell.f}` : cell?.v ?? null
-                );
-            }
-
-            data.push(row);
-        }
-
-        return data;
-    }
-
-    async function createTable(container) {
-        container.dataset.initialized = "true";
+        el.dataset.initialized = "true";
 
         try {
-            await loadLibraries();
+            const res = await fetch(el.dataset.file);
 
-            const response = await fetch(container.dataset.file);
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
+            if (!res.ok)
+                throw new Error(`HTTP ${res.status}`);
 
-            const workbook = XLSX.read(
-                await response.arrayBuffer(),
+            const wb = XLSX.read(
+                await res.arrayBuffer(),
                 { cellFormula: true }
             );
 
             const sheet =
-                container.dataset.sheet || workbook.SheetNames[0];
+                el.dataset.sheet || wb.SheetNames[0];
 
-            const data =
-                worksheetToArray(workbook.Sheets[sheet]);
+            const ws = wb.Sheets[sheet];
 
-            const engine =
-                HyperFormulaClass.buildEmpty({
-                    licenseKey: "internal-use-in-handsontable",
-                    language: LANGUAGE
-                });
+            if (!ws)
+                throw new Error(`Blatt "${sheet}" nicht gefunden.`);
 
-            container.innerHTML = "";
+            const range = ws["!ref"]
+                ? XLSX.utils.decode_range(ws["!ref"])
+                : { e: { r: 0, c: 0 } };
 
-            const formulaBar = document.createElement("div");
-            formulaBar.className = "ods-formula-bar";
-            formulaBar.textContent = "";
+            const data = Array.from(
+                { length: range.e.r + 1 },
+                (_, r) => Array.from(
+                    { length: range.e.c + 1 },
+                    (_, c) => {
+                        const cell =
+                            ws[XLSX.utils.encode_cell({ r, c })];
 
-            const table = document.createElement("div");
-            container.append(formulaBar, table);
+                        return cell?.f
+                            ? `=${cell.f}`
+                            : cell?.v ?? null;
+                    }
+                )
+            );
 
-            container.handsontable = new Handsontable(table, {
+            el.innerHTML = "";
+
+            const formulaBar =
+                document.createElement("div");
+
+            formulaBar.className =
+                "ods-formula-bar";
+
+            const tableDiv =
+                document.createElement("div");
+
+            el.append(formulaBar, tableDiv);
+
+            new Handsontable(tableDiv, {
                 data,
                 rowHeaders: true,
                 colHeaders: true,
+
                 formulas: {
                     engine,
                     sheetName: sheet
                 },
-                licenseKey: "non-commercial-and-evaluation",
+
+                licenseKey:
+                    "non-commercial-and-evaluation",
+
                 stretchH: "all",
                 width: "100%",
                 height: "auto",
+
                 manualColumnResize: true,
                 manualRowResize: true,
+
                 contextMenu: true,
                 filters: true,
                 dropdownMenu: true,
@@ -136,23 +121,12 @@
             });
 
         } catch (error) {
-            console.error(error);
-            container.innerHTML =
+            el.innerHTML =
                 `<div class="ods-error">
-                    Die Tabelle konnte nicht geladen werden: ${error.message}
+                    Die Tabelle konnte nicht geladen werden:
+                    ${error.message}
                 </div>`;
         }
     }
 
-    function init() {
-        document
-            .querySelectorAll(".ods-table[data-file]:not([data-initialized])")
-            .forEach(createTable);
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init);
-    } else {
-        init();
-    }
 })();
