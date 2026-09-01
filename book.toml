@@ -1,0 +1,8 @@
+[book]
+title = "Tabellenkalkulation"
+authors = ["MaximilianHertenstein"]
+language = "de"
+
+[output.html]
+additional-css = ["src/css/spreadsheet.css"]
+additional-js = ["src/js/spreadsheet.js"]

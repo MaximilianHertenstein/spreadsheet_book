@@ -1,0 +1,35 @@
+.ods-table-wrapper {
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.ods-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.ods-formula-bar {
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f7f7f7;
+    font-family: monospace;
+    font-size: 1.4rem;
+    min-height: 2.6rem;
+    line-height: 1.4;
+    word-break: break-all;
+}
+
+.ods-error {
+    padding: 1rem;
+    border: 1px solid #c00;
+    border-radius: 4px;
+    background: #fee;
+    color: #900;
+}
+
+.ods-loading {
+    padding: 1rem;
+    opacity: 0.7;
+}
