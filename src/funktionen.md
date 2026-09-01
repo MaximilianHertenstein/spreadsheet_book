@@ -38,6 +38,8 @@ Die folgenden Funktionen sind besonders wichtig:
 | --- | --- |
 | `MIN` | kleinste Zahl |
 | `MAX` | größte Zahl |
+| `MITTELWERT` | Durschnitt aller Zahlen |
+
 | `PRODUKT` | Produkt aller Zahlen |
 | `ANZAHL` | Anzahl der Zahlen |
 | `ANZAHL2` | Anzahl der nicht leeren Zellen |

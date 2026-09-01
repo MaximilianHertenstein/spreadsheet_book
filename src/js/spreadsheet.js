@@ -44,7 +44,6 @@
                 })
             );
 
-            // Instanz in Variable speichern
             const hot = new Handsontable(tableDiv, {
                 data,
                 rowHeaders: true,
@@ -53,9 +52,12 @@
                 height: "auto",
                 manualColumnResize: true,
                 manualRowResize: true,
-                contextMenu: true,
-                filters: true,
-                dropdownMenu: true,
+                
+                // --- Diese drei Zeilen wurden entfernt/deaktiviert: ---
+                // contextMenu: true,
+                // filters: true,
+                // dropdownMenu: true,
+                
                 licenseKey: "non-commercial-and-evaluation",
                 formulas: {
                     engine: HF.buildEmpty({ licenseKey: "internal-use-in-handsontable", language: "deDE" }),
@@ -66,11 +68,10 @@
                 }
             });
 
-            // NEU: Optionale Zelle vorauswählen, falls data-select vorhanden ist
             if (el.dataset.select) {
                 try {
                     const { r, c } = XLSX.utils.decode_cell(el.dataset.select);
-                    hot.selectCell(r, c); // Wählt die Zelle aus (triggert automatisch die Formelleiste)
+                    hot.selectCell(r, c);
                 } catch (err) {
                     console.warn("Ungültige Zelle für data-select:", el.dataset.select);
                 }
