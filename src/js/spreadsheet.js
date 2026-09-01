@@ -1,134 +1,83 @@
 (async () => {
+    const load = src => new Promise((resolve, reject) =>
+        document.head.appendChild(Object.assign(document.createElement("script"), { src, onload: resolve, onerror: () => reject(new Error(`Fehler: ${src}`)) }))
+    );
 
-    const load = src =>
-        new Promise((resolve, reject) => {
-            const script = document.createElement("script");
-            script.src = src;
-            script.onload = resolve;
-            script.onerror = () =>
-                reject(new Error(`Fehler: ${src}`));
-            document.head.appendChild(script);
-        });
-
+    // Bibliotheken parallel laden
     await Promise.all([
         load("https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"),
-        load("https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/hyperformula.full.min.js")
+        load("https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/hyperformula.full.min.js"),
+        load("https://cdn.jsdelivr.net/npm/handsontable@17.1.0/dist/handsontable.full.min.js")
     ]);
 
+    await load("https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/languages/deDE.js");
     const HF = window.HyperFormula;
-
-    await load(
-        "https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/languages/deDE.js"
-    );
-
     HF.registerLanguage("deDE", HF.languages.deDE);
 
-    const engine = HF.buildEmpty({
-        licenseKey: "internal-use-in-handsontable",
-        language: "deDE"
-    });
+    const deFuncs = HF.languages.deDE.functions;
+    const toGerman = f => f.replace(/[A-Za-z_][A-Za-z0-9_.]*(?=\()/g, name => deFuncs[name.toUpperCase()] ?? name);
 
-    const toGerman = formula =>
-        formula.replace(
-            /[A-Za-z_][A-Za-z0-9_.]*(?=\()/g,
-            name =>
-                HF.languages.deDE.functions[name.toUpperCase()] ?? name
-        );
-
-    await load(
-        "https://cdn.jsdelivr.net/npm/handsontable@17.1.0/dist/handsontable.full.min.js"
-    );
-
-    for (const el of document.querySelectorAll(
-        ".ods-table[data-file]:not([data-initialized])"
-    )) {
-
+    for (const el of document.querySelectorAll(".ods-table[data-file]:not([data-initialized])")) {
         el.dataset.initialized = "true";
 
         const formulaBar = document.createElement("div");
         formulaBar.className = "ods-formula-bar";
-
         const tableDiv = document.createElement("div");
-
-        el.innerHTML = "";
-        el.append(formulaBar, tableDiv);
+        
+        el.replaceChildren(formulaBar, tableDiv);
 
         try {
             const res = await fetch(el.dataset.file);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-            if (!res.ok)
-                throw new Error(`HTTP ${res.status}`);
-
-            const wb = XLSX.read(
-                await res.arrayBuffer(),
-                { cellFormula: true }
-            );
-
-            const sheet =
-                el.dataset.sheet || wb.SheetNames[0];
-
+            const wb = XLSX.read(await res.arrayBuffer(), { cellFormula: true });
+            const sheet = el.dataset.sheet || wb.SheetNames[0];
             const ws = wb.Sheets[sheet];
+            if (!ws) throw new Error(`Blatt "${sheet}" nicht gefunden.`);
 
-            if (!ws)
-                throw new Error(`Blatt "${sheet}" nicht gefunden.`);
+            const { e } = ws["!ref"] ? XLSX.utils.decode_range(ws["!ref"]) : { e: { r: 0, c: 0 } };
 
-            const range = ws["!ref"]
-                ? XLSX.utils.decode_range(ws["!ref"])
-                : { e: { r: 0, c: 0 } };
-
-            const data = Array.from(
-                { length: range.e.r + 1 },
-                (_, r) =>
-                    Array.from(
-                        { length: range.e.c + 1 },
-                        (_, c) => {
-                            const cell =
-                                ws[XLSX.utils.encode_cell({ r, c })];
-
-                            return cell?.f
-                                ? `=${toGerman(cell.f)}`
-                                : cell?.v ?? null;
-                        }
-                    )
+            const data = Array.from({ length: e.r + 1 }, (_, r) =>
+                Array.from({ length: e.c + 1 }, (_, c) => {
+                    const cell = ws[XLSX.utils.encode_cell({ r, c })];
+                    return cell?.f ? `=${toGerman(cell.f)}` : cell?.v ?? null;
+                })
             );
 
-            new Handsontable(tableDiv, {
+            // Instanz in Variable speichern
+            const hot = new Handsontable(tableDiv, {
                 data,
                 rowHeaders: true,
                 colHeaders: true,
-
-                formulas: {
-                    engine,
-                    sheetName: sheet
-                },
-
-                licenseKey:
-                    "non-commercial-and-evaluation",
-
                 stretchH: "all",
-                width: "100%",
                 height: "auto",
-
                 manualColumnResize: true,
                 manualRowResize: true,
-
                 contextMenu: true,
                 filters: true,
                 dropdownMenu: true,
-
-                afterSelectionEnd(row, column) {
-                    formulaBar.textContent =
-                        this.getSourceDataAtCell(row, column) ?? "";
+                licenseKey: "non-commercial-and-evaluation",
+                formulas: {
+                    engine: HF.buildEmpty({ licenseKey: "internal-use-in-handsontable", language: "deDE" }),
+                    sheetName: sheet
+                },
+                afterSelectionEnd(row, col) {
+                    formulaBar.textContent = this.getSourceDataAtCell(row, col) ?? "";
                 }
             });
 
+            // NEU: Optionale Zelle vorauswählen, falls data-select vorhanden ist
+            if (el.dataset.select) {
+                try {
+                    const { r, c } = XLSX.utils.decode_cell(el.dataset.select);
+                    hot.selectCell(r, c); // Wählt die Zelle aus (triggert automatisch die Formelleiste)
+                } catch (err) {
+                    console.warn("Ungültige Zelle für data-select:", el.dataset.select);
+                }
+            }
+
         } catch (error) {
-            el.innerHTML =
-                `<div class="ods-error">
-                    Die Tabelle konnte nicht geladen werden:
-                    ${error.message}
-                </div>`;
+            el.innerHTML = `<div class="ods-error">Die Tabelle konnte nicht geladen werden: ${error.message}</div>`;
         }
     }
-
 })();
