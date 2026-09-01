@@ -1,18 +1,39 @@
 
+
+## Zellen
+
 Eine Tabelle in einem Tabellenkalkulationsprogramm besteht aus mehreren Zellen.
-Diese Zellen können ausgewählt und geändert werden
+Diese Zellen können ausgewählt und geändert werden.
+
+<div
+	class="ods-table"
+	data-file="tabellen/zellen.ods">
+</div>
+
+## Rechnungen
 
 
-<!-- hier beispieltablle ohne formeln usw -->
-
-
-Der Wert einer Zelle kann auch berechnt werden. Dafür schreibt man als erstes Zeichen ein `=` in die Zelle.
+Der Wert einer Zelle kann auch berechnet werden. Dafür schreibt man als erstes Zeichen ein `=` in die Zelle.
 Danach folgt die Rechnung.
+
+<div
+	class="ods-table"
+	data-select="B2"
+	data-file="tabellen/plusrechnung.ods">
+</div>
+
 Dabei kannst du folgende Rechenzeichen verwenden.
 
-<!-- md-Tabelle mit plus, minus geteilt und mal -->
+| Rechenzeichen | Bedeutung | 
+| --- | --- | 
+| `+` | Addition |
+| `-` | Subtraktion | 
+| `*` | Multiplikation | 
+| `/` | Division | 
 
-
-<!-- hier interaktive beispieltablle mit formeln und rechnungen aber ohne verweise auf andere zellen -->
+<div
+	class="ods-table"
+	data-file="tabellen/rechenoperationen.ods">
+</div>
 
 
