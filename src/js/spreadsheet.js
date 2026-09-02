@@ -19,7 +19,22 @@
   await window.__odsLibsPromise;
 
   const deFuncs = HyperFormula.languages.deDE.functions;
-  const toGerman = f => f.replace(/[A-Za-z_][A-Za-z0-9_.]*(?=\()/g, name => deFuncs[name.toUpperCase()] ?? name);
+  
+  // Bereinigt ODS-Klammern und übersetzt danach Funktionen ins Deutsche
+  const formatFormula = f => {
+    let s = f;
+    // 1. ODS Bereichs-Referenzen (lokal): [.A1:.B2] -> A1:B2
+    s = s.replace(/\[\.([A-Za-z0-9_$]+):\.([A-Za-z0-9_$]+)\]/g, "$1:$2");
+    
+    // 2. ODS Einzel-Referenzen (lokal): [.E$1] -> E$1 oder [.A2] -> A2
+    s = s.replace(/\[\.([A-Za-z0-9_$]+)\]/g, "$1");
+    
+    // 3. ODS Blatt-Referenzen (extern): [Tabelle1.A1] -> Tabelle1!A1
+    s = s.replace(/\[([^\]]+)\.([A-Za-z0-9_$]+)\]/g, "$1!$2");
+    
+    // 4. Englische Funktionen in deutsche übersetzen
+    return s.replace(/[A-Za-z_][A-Za-z0-9_.]*(?=\()/g, name => deFuncs[name.toUpperCase()] ?? name);
+  };
 
   for (const el of document.querySelectorAll(".ods-table[data-file]:not([data-initialized])")) {
     el.dataset.initialized = "true";
@@ -39,10 +54,12 @@
       if (!ws) throw new Error(`Blatt "${sheetName}" nicht gefunden.`);
 
       const { e } = ws["!ref"] ? XLSX.utils.decode_range(ws["!ref"]) : { e: { r: 0, c: 0 } };
+      
       const data = Array.from({ length: e.r + 1 }, (_, r) =>
         Array.from({ length: e.c + 1 }, (_, c) => {
           const cell = ws[XLSX.utils.encode_cell({ r, c })];
-          return cell?.f ? `=${toGerman(cell.f)}` : cell?.v ?? null;
+          // Nutze die neue formatFormula-Funktion für die Formel-Strings
+          return cell?.f ? `=${formatFormula(cell.f)}` : cell?.v ?? null;
         })
       );
 
