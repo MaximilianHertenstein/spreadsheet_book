@@ -1,7 +1,9 @@
 # Summary
 
-- [Chapter 1](./chapter_1.md)
 - [Grundlagen](./grundlagen.md)
 - [Verweise](./verweise.md)
+- [Relative Verweise](./relative_verweise.md)
+- [Absolute Verweise](./absolute_verweise.md)
 
 - [Funktionen](./funktionen.md)
+

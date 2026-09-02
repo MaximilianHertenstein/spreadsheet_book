@@ -18,3 +18,4 @@ Du kannst in Rechnungen auf andere Zellen verweisen.
 </div>
 
 Der berechnete Wert ändert sich dann automatisch, wenn die Zelle, auf die verwiesen wird, geändert wird.
+Rechnungen, die Verweise beinhalten, nennt man auch Formeln.
