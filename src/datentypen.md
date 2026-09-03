@@ -1,14 +1,15 @@
 # Datentypen
 
-In einer Tabellenkalkulation können Zellen verschiedene Datentypen enthalten.
-Der Datentyp beschreibt, um welche Art von Wert es sich handelt.
+Wir haben schon diese Arten von Werten kennengelernt:
+
+- Zahlen
+- Texte
+- Wahrheitswerte
+
 
 ## Zahlen
 
-Zahlen können für Rechnungen verwendet werden. Dazu gehören ganze Zahlen,
-negative Zahlen und Dezimalzahlen.
-
-In jeder Zeile der Tabelle wird mit einer Zahl gerechnet.
+Zahlen können in Rechnungen verwendet werden. 
 
 <div
 	class="ods-table"
@@ -36,8 +37,8 @@ Ein Wahrheitswert kann nur zwei verschiedene Werte annehmen:
 * `WAHR`
 * `FALSCH`
 
-Wahrheitswerte entstehen zum Beispiel durch Bedingungen und können mit den
-Funktionen `UND` und `ODER` verknüpft werden. Mit `WENN` kann abhängig von
+Wahrheitswerte entstehen zum Beispiel bei Vergleichen und können mit den
+Funktionen `UND` und `ODER` verknüpft werden. Sie können mit `NICHT` gewechselt werden. Mit `WENN` kann abhängig von
 einem Wahrheitswert ein Text ausgegeben werden.
 
 <div
