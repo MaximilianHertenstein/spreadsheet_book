@@ -58,7 +58,7 @@
       const data = Array.from({ length: e.r + 1 }, (_, r) =>
         Array.from({ length: e.c + 1 }, (_, c) => {
           const cell = ws[XLSX.utils.encode_cell({ r, c })];
-          // Nutze die neue formatFormula-Funktion für die Formel-Strings
+          // Nutze die formatFormula-Funktion für die Formel-Strings
           return cell?.f ? `=${formatFormula(cell.f)}` : cell?.v ?? null;
         })
       );
@@ -71,14 +71,30 @@
         height: "auto",
         manualColumnResize: true,
         manualRowResize: true,
-        // contextMenu, filters und dropdownMenu bleiben bewusst deaktiviert.
+        outsideClickDeselects: false, 
         licenseKey: "non-commercial-and-evaluation",
+        
+        // HIER NEU: Custom Renderer, der die Ansicht auf "WAHR" und "FALSCH" umschreibt
+        renderer: function(instance, td, row, col, prop, value, cellProperties) {
+          Handsontable.renderers.TextRenderer.apply(this, arguments);
+          if (value === true || (typeof value === 'string' && value.toUpperCase() === 'TRUE')) {
+            td.textContent = 'WAHR';
+          } else if (value === false || (typeof value === 'string' && value.toUpperCase() === 'FALSE')) {
+            td.textContent = 'FALSCH';
+          }
+        },
+
         formulas: {
           engine: HyperFormula.buildEmpty({ licenseKey: "internal-use-in-handsontable", language: "deDE" }),
           sheetName,
         },
+        
         afterSelectionEnd(row, col) {
-          formulaBar.textContent = this.getSourceDataAtCell(row, col) ?? "";
+          let val = this.getSourceDataAtCell(row, col) ?? "";
+          // Formelleiste übersetzt echte Bool-Werte ebenfalls, damit nicht dort "true" steht
+          if (val === true) val = "WAHR";
+          if (val === false) val = "FALSCH";
+          formulaBar.textContent = val;
         },
       });
 

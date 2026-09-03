@@ -1,159 +1,96 @@
+# Wahrheitswerte
 
-# Booleans
+In diesem Kapitel beschäftigen wir uns mit Wahrheitswerten.
 
-In diesem Kapitel beschäftigen wir uns mit Wahrheitswerten (*Booleans*).
-Diese sind im Gegensatz zu *Integern* und *Strings* zumindest in der
-Hinsicht leichter zu verstehen, dass es nur zwei *Booleans* gibt:
+Es gibt nur zwei Wahrheitswerte:
 
-- Wahr (`True`)
-
-- Falsch (`False`)
+* `WAHR`
+* `FALSCH`
 
 ## Vergleiche
 
-Wir erhalten ein *Boolean*, wenn wir zwei *Werte* miteinander
-vergleichen.
+Wir erhalten einen Wahrheitswert, wenn wir zwei Werte miteinander vergleichen.
 
-``` python, py-execute
-2 < 3
-```
-``` python, py-execute
-2 * 3 == 3 * 2
-```
-``` python, py-execute
-'hello' == 'hello!'
-```
-``` python, py-execute
-2 != 2
-```
+Die wichtigsten Vergleichsoperatoren sind in der folgenden Tabelle aufgeführt.
 
-Die wichtigsten *Vergleichsoperatoren* sind in der folgenden Tabelle
-aufgeführt.
+| Operator | Bedeutung           | Beispiel |
+| -------- | ------------------- | -------- |
+| `=`      | gleich              | `5=5`    |
+| `<`      | kleiner als         | `3<5`    |
+| `>`      | größer als          | `5>3`    |
+| `<=`     | kleiner oder gleich | `3<=3`   |
+| `>=`     | größer oder gleich  | `5>=3`   |
+| `<>`     | ungleich            | `5<>3`   |
 
-![tabelle_vergleichsoperatoren](tabelle_vergleichsoperatoren/tabelle_vergleichsoperatoren.svg)
+Ein Vergleich kann auch direkt als Formel in einer Zelle stehen. Das erste Zeichen ist dann, wie bei jeder Formel, ein `=`.
 
-<span id="table:vgl_op" data-label="table:vgl_op"></span>
+<div
+    class="ods-table" data-select="A1"
+    data-file="tabellen/vergleiche.ods">
+</div>
 
-## Vergleiche von Werten mit unterschiedlichen Typen
+## Vergleiche von Zahlen und Texten
 
-Zwei *Werte* die verschiedene *Typen* haben, können nicht gleich sein.
+Zahlen können mit Zahlen und Texte können mit Texten verglichen werden.
 
-``` python, py-execute
-1 == '1'
-```
+Zum Beispiel kann geprüft werden, ob zwei Texte gleich sind.
 
-## Variablen
+<div
+    class="ods-table" data-select="A1"
+    data-file="tabellen/vergleich_werte.ods">
+</div>
 
-Wie alle *Werte* können wir *Booleans* in *Variablen* speichern.
+## Wahrheitswerte in Formeln
 
-``` python, py-execute
-seven_is_five_plus_three = 7 == 5 + 3
-```
-``` python, py-execute
-seven_is_five_plus_three
-```
+Wahrheitswerte können in Formeln verwendet werden. So kann zum Beispiel geprüft werden, ob eine Person volljährig ist.
 
-## Funktionen
-
-Wie alle Werte können *Booleans* auch *Argumente* oder *Rückgabewerte* von
-Funktionen sein.
-
-``` python, py-execute
-def full_age(age: int) -> bool:
-    return age > 17
-```
-
-``` python, py-execute
-full_age(17)
-```
-``` python, py-execute
-full_age(18)
-```
-
-## Boolesche Ausdrücke und Bedingungen
-
-Ausdrücke, die zu einem *Boolean* ausgewertet werden, nennt man
-*boolesche Ausdrücke* oder Bedingungen. Wie Rechenausdrücke können diese
-mit *Operatoren* verknüpft werden.
+<div
+    class="ods-table" data-select="C2"
+    data-file="tabellen/volljaehrigkeit.ods">
+</div>
 
 ## Verneinungen
 
-Der Operator `not` macht `True` zu `False` und `False` zu `True`.
+Die Funktion `NICHT` kehrt einen Wahrheitswert um. Aus `WAHR` wird `FALSCH` und aus `FALSCH` wird `WAHR`.
 
-``` python, py-execute
-not True
-```
-``` python, py-execute
-not False
-```
-``` python, py-execute
-not 1 == 2
-```
+<div
+    class="ods-table" data-select="B1"
+    data-file="tabellen/nicht.ods">
+</div>
 
-## Verknüpfungen von Bedingungen
+## Verknüpfung mit UND
 
-Mithilfe der *Operatoren* `and` und `or` können zwei *boolesche
-Ausdrücke* miteinander verknüpft werden. Wenn zwei *boolesche Ausdrücke*
-mit `and` verknüpft werden, dann wird der verknüpfte *boolesche
-Ausdruck* genau dann zu `True` ausgewertet, wenn beide Teilausdrücke zu
-`True` ausgewertet werden.
+Mit der Funktion `UND` können zwei Bedingungen verknüpft werden.
 
-``` python, py-execute
-True and 15 > 10
-```
-``` python, py-execute
-1 < 2 and 2 > 0
-```
-``` python, py-execute
-3 <= 3 and (2 < 0 and 4 >= 5)
-```
+Die Funktion liefert nur dann `WAHR`, wenn beide Bedingungen `WAHR` sind.
 
-Wenn zwei *boolesche Ausdrücke* mit `or` verknüpft werden, dann ist der
-verknüpfte *boolesche Ausdruck* genau dann wahr, wenn mindestens einer
-der beiden *Teilausdrücke* zu `True` ausgewertet wird.
+Die vier möglichen Fälle sind in der folgenden Tabelle dargestellt.
 
-``` python, py-execute
-5 != 5 or (not 4 < 3)
-```
-``` python, py-execute
-4 <= 3 or (1 < 2 and 2 > 0)
-```
+<div
+    class="ods-table" data-select="C1"
+    data-file="tabellen/und.ods">
+</div>
+
+## Verknüpfung mit ODER
+
+Mit der Funktion `ODER` können ebenfalls zwei Bedingungen verknüpft werden.
+
+Die Funktion liefert `WAHR`, wenn mindestens eine der beiden Bedingungen `WAHR` ist.
+
+Auch hier gibt es vier mögliche Fälle.
+
+<div
+    class="ods-table" data-select="C1"
+    data-file="tabellen/oder.ods">
+</div>
 
 ## Vorrangregeln
 
-Bei Rechenausdrücken gilt die Punkt-vor-Strich-Regel.
-
-``` python, py-execute
-1 + 2 * 3
-```
-
-Der Ausdruck wird also folgendermaßen ausgewertet.
-
-```python
-1 + 2 * 3 = 1 + 6 = 7
-```
-
-Für *boolesche Ausdrücke* gibt es die `and`-vor-`or`-Regel.
-
-
-``` python, py-execute
-True or False and False
-```
-
-Der Ausdruck wird also folgendermaßen ausgewertet.
-
-```python
-True or False and False = True or False = True
-```
+Bei Rechnungen gilt die Punkt-vor-Strich-Regel. Bei logischen Verknüpfungen wird `UND` vor `ODER` ausgewertet.
 
 Eine andere Auswertungsreihenfolge kann durch das Setzen von Klammern erreicht werden.
 
-``` python, py-execute
-(True or False) and False
-```
-
-## Aufgaben
-
-[Zu den Aufgaben zu diesem Kapitel](./booleans_aufgaben.md)
-
-
+<div
+    class="ods-table"
+    data-file="tabellen/vorrang.ods">
+</div>

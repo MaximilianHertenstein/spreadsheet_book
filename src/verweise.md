@@ -1,6 +1,6 @@
 ## Verweise
 
-Jede Zelle kann eindeutig durch ihre Zeile und Spalte identifiziert werden. 
+Jede Zelle kann eindeutig durch ihre Zeile und Spalte identifiziert werden.
 Zum Beispiel handelt es sich bei der ausgewählten Zelle in der folgenden Tabelle um die Zelle `B3`.
 
 <div
@@ -9,7 +9,7 @@ Zum Beispiel handelt es sich bei der ausgewählten Zelle in der folgenden Tabell
 	data-file="tabellen/zellbezug.ods">
 </div>
 
-Du kannst in Rechnungen auf andere Zellen verweisen.
+Du kannst in Rechnungen auf andere Zellen verweisen. Dazu verwendest du den Namen der betreffenden Zelle.
 
 <div
 	class="ods-table"
@@ -18,4 +18,4 @@ Du kannst in Rechnungen auf andere Zellen verweisen.
 </div>
 
 Der berechnete Wert ändert sich dann automatisch, wenn die Zelle, auf die verwiesen wird, geändert wird.
-Rechnungen, die Verweise beinhalten, nennt man auch Formeln.
+Rechnungen in einer Tabellenkalkulation nennt man **Formeln**. Formeln können dabei Verweise auf andere Zellen enthalten.
