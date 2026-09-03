@@ -52,10 +52,11 @@ Ein Datum besteht aus Tag, Monat und Jahr. Eine Uhrzeit besteht aus Stunden,
 Minuten und Sekunden.
 
 Datums- und Zeitangaben können miteinander verglichen und berechnet werden.
-In der Tabelle wird außerdem die Anzahl der Tage zwischen zwei Datumsangaben
-berechnet.
+
 
 <div
 	class="ods-table"
 	data-file="tabellen/datentypen_datum.ods">
 </div>
+
+Mit den Funktionen `JAHR`, `MONAT` und `TAG` lassen sich Jahr, Monat und Tag eines Datums ermitteln.

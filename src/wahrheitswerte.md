@@ -83,14 +83,3 @@ Auch hier gibt es vier mögliche Fälle.
     class="ods-table" data-select="C1"
     data-file="tabellen/oder.ods">
 </div>
-
-## Vorrangregeln
-
-Bei Rechnungen gilt die Punkt-vor-Strich-Regel. Bei logischen Verknüpfungen wird `UND` vor `ODER` ausgewertet.
-
-Eine andere Auswertungsreihenfolge kann durch das Setzen von Klammern erreicht werden.
-
-<div
-    class="ods-table"
-    data-file="tabellen/vorrang.ods">
-</div>
