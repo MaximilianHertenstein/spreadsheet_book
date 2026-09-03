@@ -5,7 +5,6 @@
 
 .ods-table {
     width: 100%;
-    overflow-x: auto;
 }
 
 .ods-formula-bar {
@@ -22,6 +21,11 @@
     word-break: break-all;
 }
 
+.ods-formula-bar:empty::before {
+    content: "Zelle wählen …";
+    opacity: 0.45;
+}
+
 .ods-error {
     padding: 1rem;
     border: 1px solid #c00;
@@ -33,4 +37,9 @@
 .ods-loading {
     padding: 1rem;
     opacity: 0.7;
+}
+
+.ods-table .handsontable {
+    width: 100%;
+    font-size: 1.4rem;
 }

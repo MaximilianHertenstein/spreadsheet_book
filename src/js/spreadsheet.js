@@ -1,114 +1,88 @@
 (async () => {
-  const loadScript = src => new Promise((resolve, reject) =>
-    document.head.append(Object.assign(document.createElement("script"), { src, onload: resolve, onerror: reject }))
-  );
+  if (document.readyState === "loading")
+    await new Promise(r => document.addEventListener("DOMContentLoaded", r, { once: true }));
 
-  // 1. Kern-Bibliotheken parallel laden, danach das deutsche Sprachpaket
-  window.__odsLibs ??= Promise.all([
-    "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js",
-    "https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/hyperformula.full.min.js",
-    "https://cdn.jsdelivr.net/npm/handsontable@17.1.0/dist/handsontable.full.min.js"
-  ].map(loadScript))
-  .then(() => loadScript("https://cdn.jsdelivr.net/npm/hyperformula@3.1.0/dist/languages/deDE.js"))
-  .then(() => HyperFormula.registerLanguage("deDE", HyperFormula.languages.deDE));
-
-  const tables = document.querySelectorAll(".ods-table[data-file]:not([data-initialized])");
-  if (!tables.length) return;
-
-  try { 
-    await window.__odsLibs; 
-  } catch (err) { 
-    return tables.forEach(el => el.innerHTML = `<div class="ods-error">Ladefehler: ${err.message}</div>`); 
+  if (!document.querySelector('link[data-hot]')) {
+    const l = document.createElement("link");
+    l.rel = "stylesheet"; l.dataset.hot = "1";
+    l.href = "https://cdn.jsdelivr.net/npm/handsontable@18.1.0/styles/ht-theme-main.min.css";
+    document.head.append(l);
   }
 
-  const deFuncs = HyperFormula.languages.deDE.functions;
+  const load = src => new Promise((res, rej) => {
+    if (document.querySelector(`script[src="${src}"]`)) return res();
+    const s = document.createElement("script");
+    s.onload = res; s.onerror = () => rej(new Error("Script: " + src));
+    s.src = src; document.head.append(s);
+  });
 
-  // Formel-Syntax aus ODS bereinigen und englische Funktionsnamen zu DE mappen
-  const normalizeFormula = f => "=" + f
-    .replace(/\[\./g, "").replace(/\]/g, "").replace(/\:\./g, ":").replace(/\./g, "!")
-    .replace(/[A-Z_]+(?=\()/gi, name => deFuncs[name.toUpperCase()] || name);
+  window.__ods ??= Promise.all([
+    "https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js",
+    "https://cdn.jsdelivr.net/npm/hyperformula@3.4.0/dist/hyperformula.full.min.js",
+    "https://cdn.jsdelivr.net/npm/handsontable@18.1.0/dist/handsontable.full.min.js"
+  ].map(load))
+    .then(() => load("https://cdn.jsdelivr.net/npm/hyperformula@3.4.0/dist/languages/deDE.js"))
+    .then(() => HyperFormula.registerLanguage("deDE", HyperFormula.languages.deDE));
 
-  // Ausgabe-Formatierer für deutsche Darstellung
-  const fmtDE = val => {
-    if (typeof val === "boolean") return val ? "WAHR" : "FALSCH";
-    if (typeof val === "number") return val.toLocaleString("de-DE", { maximumFractionDigits: 10 });
-    if (val instanceof Date && !isNaN(val)) return val.toLocaleDateString("de-DE");
-    return val;
+  const els = [...document.querySelectorAll(".ods-table[data-file]:not([data-initialized])")];
+  if (!els.length) return;
+  try { await window.__ods; }
+  catch (e) { return els.forEach(el => el.textContent = "Ladefehler: " + e.message); }
+
+  const map = HyperFormula.languages.deDE.functions;
+
+  // EN -> DE + ODS-Klammern -> A1 + "," -> ";" (ausser in "...")
+  const norm = f => {
+    const s = "=" + f.replace(/[\[\]]/g, "").replace(/:\./g, ":")
+      .replace(/(^|[^\w$])\.(\$?[A-Z]{1,3}\$?\d+)/gi, "$1$2")
+      .replace(/'([^']+)'\.(\$?[A-Z]{1,3}\$?\d+)/g, "'$1'!$2")
+      .replace(/([\w$\u00C0-\u00FF]+)\.(\$?[A-Z]{1,3}\$?\d+)/g, "$1!$2")
+      .replace(/[A-Z][\w.]*?(?=\()/gi, n => map[n.toUpperCase()] || n);
+    return s.split('"').map((p, i) => i % 2 ? p : p.replace(/,/g, ";")).join('"');
   };
 
-  for (const el of tables) {
-    el.dataset.initialized = "true";
-    
-    const fb = document.createElement("div"); fb.className = "ods-formula-bar";
-    const container = document.createElement("div");
-    el.replaceChildren(fb, container);
+  const fmt = v => v == null ? "" : typeof v == "boolean" ? (v ? "WAHR" : "FALSCH")
+    : typeof v == "number" ? v.toLocaleString("de-DE", { maximumFractionDigits: 10 })
+    : v instanceof Date ? v.toLocaleDateString("de-DE") : v;
 
+  const toVal = s => {
+    const t = s.trim();
+    const m = t.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
+    if (m) return new Date(m[3].length === 2 ? +m[3] + 2000 : +m[3], m[2] - 1, m[1]);
+    const n = t.includes(",") ? t.replace(/\./g, "").replace(",", ".") : t;
+    return n !== "" && !isNaN(n) ? +n : s;
+  };
+
+  for (const el of els) {
+    el.dataset.initialized = "true";
+    const fb = document.createElement("div"); fb.className = "ods-formula-bar";
+    const box = document.createElement("div");
+    el.replaceChildren(fb, box);
     try {
       const res = await fetch(el.dataset.file);
+      if (!res.ok) throw new Error("HTTP " + res.status + " " + el.dataset.file);
       const wb = XLSX.read(await res.arrayBuffer(), { cellFormula: true, cellDates: true });
-      const sheetName = el.dataset.sheet || wb.SheetNames[0];
-      const ws = wb.Sheets[sheetName];
-      const range = XLSX.utils.decode_range(ws["!ref"] || "A1");
+      const name = el.dataset.sheet || wb.SheetNames[0];
+      const ws = wb.Sheets[name], R = XLSX.utils.decode_range(ws["!ref"] || "A1");
+      const data = Array.from({ length: R.e.r - R.s.r + 1 }, (_, i) =>
+        Array.from({ length: R.e.c - R.s.c + 1 }, (_, j) => {
+          const c = ws[XLSX.utils.encode_cell({ r: R.s.r + i, c: R.s.c + j })];
+          return c?.f ? norm(c.f) : c?.v ?? null;
+        }));
 
-      // Grid-Daten als Matrix aufbauen
-      const data = Array.from({ length: range.e.r + 1 }, (_, r) =>
-        Array.from({ length: range.e.c + 1 }, (_, c) => {
-          const cell = ws[XLSX.utils.encode_cell({ r, c })];
-          if (!cell) return null;
-          return cell.f ? normalizeFormula(cell.f) : (cell.v ?? null);
-        })
-      );
-
-      const hot = new Handsontable(container, {
-        data,
-        rowHeaders: true,
-        colHeaders: true,
-        stretchH: "all",
-        height: "auto",
+      const hot = new Handsontable(box, {
+        data, rowHeaders: true, colHeaders: true, stretchH: "all", height: "auto",
+        theme: "ht-theme-main",
         licenseKey: "non-commercial-and-evaluation",
-        formulas: {
-          engine: HyperFormula.buildEmpty({
-            licenseKey: "internal-use-in-handsontable",
-            language: "deDE",
-            functionArgSeparator: ";"
-          }),
-          sheetName
-        },
-        
-        // Eingaben automatisch in Date-Objekte oder Zahlen umwandeln
-        beforeChange(changes) {
-          changes?.forEach(ch => {
-            if (typeof ch[3] !== "string") return;
-            const str = ch[3].trim().replace(",", ".");
-            const dateParts = str.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
-            
-            if (dateParts) {
-              const [_, d, m, y] = dateParts;
-              ch[3] = new Date(Date.UTC(y.length === 2 ? +y + 2000 : +y, m - 1, d));
-            } else if (!isNaN(str) && str !== "") {
-              ch[3] = Number(str);
-            }
-          });
-        },
-        
-        renderer(...args) {
-          Handsontable.renderers.TextRenderer.apply(this, args);
-          const formatted = fmtDE(args[5]);
-          if (formatted !== null && formatted !== args[5]) args[1].textContent = formatted;
-        },
-        
-        afterSelectionEnd(r, c) {
-          const raw = hot.getSourceDataAtCell(r, c) ?? "";
-          fb.textContent = fmtDE(raw) ?? raw;
-        }
+        formulas: { engine: HyperFormula.buildEmpty({ licenseKey: "internal-use-in-handsontable", language: "deDE", functionArgSeparator: ";" }), sheetName: name },
+        beforeChange: cs => cs?.forEach(c => { if (typeof c[3] == "string") c[3] = toVal(c[3]); }),
+        renderer(...a) { Handsontable.renderers.TextRenderer.apply(this, a); const f = fmt(a[5]); if (f !== a[5]) a[1].textContent = f; },
+        afterSelectionEnd: (r, c) => fb.textContent = fmt(hot.getSourceDataAtCell(r, c) ?? "")
       });
-
       if (el.dataset.select) {
         const { r, c } = XLSX.utils.decode_cell(el.dataset.select);
-        hot.selectCell(r, c);
+        hot.selectCell(r - R.s.r, c - R.s.c);
       }
-    } catch (err) {
-      el.innerHTML = `<div class="ods-error">Fehler beim Laden: ${err.message}</div>`;
-    }
+    } catch (e) { el.textContent = "Fehler beim Laden: " + e.message; }
   }
-})()
+})();
