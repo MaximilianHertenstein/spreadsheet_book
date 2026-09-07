@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du willst drei Noten unterscheiden: über 75 "Sehr gut", sonst über 50 "Bestanden", sonst "Nicht bestanden". Wie geht das mit `WENN`?"""
+prompt.distractors = [
+  """`=WENN(B2>75;B2>50;"Sehr gut";"Bestanden";"Nicht bestanden")`, weil `WENN` fünf Argumente verträgt.""",
+  """`=WENN(B2>75;"Sehr gut")+WENN(B2>50;"Bestanden")`, weil zwei Ergebnisse addiert werden.""",
+  """`=WENN(B2>75;B2>50;"Sehr gut")`, weil zwei Bedingungen in ein `WENN` passen.""",
+]
+answer.answer = """`=WENN(B2>75;"Sehr gut";WENN(B2>50;"Bestanden";"Nicht bestanden"))`, also ein zweites `WENN` an dritter Stelle."""
+context = """Für den dritten Fall steht an der Stelle von Wert-wenn-falsch einfach eine zweite `WENN`-Funktion. `WENN` versteht keine fünf Argumente und zwei Texte lassen sich nicht sinnvoll addieren. Die Staffelung prüft der Reihe nach: erst über 75, dann über 50, sonst der Rest."""
+id = "08092ef5-4338-4046-91c3-e579470cd4f2"

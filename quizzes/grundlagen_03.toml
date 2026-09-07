@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du schreibst `5+3` (ohne `=`) in eine Zelle. Was steht danach in der Zelle?"""
+prompt.distractors = [
+  """Die Zahl `8`, weil das Programm jede Rechnung von selbst erkennt.""",
+  """Eine Fehlermeldung, weil das `=` fehlt.""",
+  """Nichts, die Eingabe wird ohne `=` abgelehnt.""",
+]
+answer.answer = """Der Text `5+3`. Es wird nichts berechnet."""
+context = """Ohne `=` am Anfang rechnet nichts. Die Eingabe bleibt als Text stehen, es gibt aber auch keine Fehlermeldung und sie wird nicht gelöscht. Wer `8` erwartet, verwechselt die Anzeige mit einer echten Formel wie `=5+3`."""
+id = "54609314-8171-4b8c-ba1f-bc06682b103e"

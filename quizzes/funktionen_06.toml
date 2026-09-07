@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du willst die Zahl aus `A1` auf 2 Nachkommastellen runden. Wie lautet die Formel?"""
+prompt.distractors = [
+  """`=RUNDEN(A1)`, weil die Stellen automatisch erkannt werden.""",
+  """`=RUNDEN(A1;2;2)`, weil Vor- und Nachkommastellen angegeben werden.""",
+  """`=RUNDEN(A1:A5)`, weil ein ganzer Bereich gerundet wird.""",
+]
+answer.answer = """`=RUNDEN(A1;2)`, also Zahl und danach die Anzahl der Nachkommastellen."""
+context = """`RUNDEN` braucht genau zwei Angaben: welche Zahl und wie viele Stellen dahinter. Ohne Stellenanzahl weiß das Programm nicht, wohin es runden soll. Drei Argumente und ganze Bereiche versteht `RUNDEN` hier nicht."""
+id = "a0ba7c11-70b7-4aa7-8e9f-137e0b794e93"

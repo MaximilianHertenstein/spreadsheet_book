@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was kannst du mit Datums- und Zeitangaben in der Tabellenkalkulation machen?"""
+prompt.distractors = [
+  """Gar nichts, Daten mit Datum sind nur zum Anschauen da.""",
+  """Nur sortieren, rechnen und vergleichen geht nie.""",
+  """Nur Texte anhängen, alles andere liefert einen Fehler.""",
+]
+answer.answer = """Sie vergleichen und miteinander berechnen, zum Beispiel eine Dauer ausrechnen."""
+context = """Datum und Uhrzeit sind zum Rechnen da: Differenzen ergeben eine Dauer und Vergleiche sagen, was früher oder später liegt. Nur anschauen wäre verschenkt. Und Texte anhängen ist gerade nicht ihre Stärke, dafür gibt es echte Textfunktionen."""
+id = "fbe89174-acdb-44fd-9f95-14a51a5d5d93"

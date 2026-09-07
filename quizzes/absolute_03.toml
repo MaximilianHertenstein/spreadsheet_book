@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `B2` steht `=A2*E$1`. Du ziehst die Formel nach unten in die Zelle `B3`. Was steht danach in `B3`?"""
+prompt.distractors = [
+  """`=A3*E$3`, weil alle Zeilennummern weiterlaufen.""",
+  """`=A2*E$1`, weil das Dollarzeichen die ganze Formel einfriert.""",
+  """`=B3*E$1`, weil auch die Spalte von A nach B wechselt.""",
+]
+answer.answer = """`=A3*E$1`, weil `A2` relativ weiterläuft und `E$1` die Zeile 1 behält."""
+context = """Das `$` wirkt nur auf die `1` in `E$1`, deshalb bleibt sie stehen. Alle anderen Zeilennummern ohne `$` laufen normal weiter, also wird `A2` zu `A3`. Wer glaubt, alles friert ein, überschätzt das `$`. Und Spalten ändern sich beim Runterziehen nie, also bleibt es bei Spalte A."""
+id = "a56d75ce-fbc3-4134-9212-e730f440137e"

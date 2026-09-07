@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `B2` steht das Alter `17`. In `C2` steht `=WENN(B2>=18;"Ja";"Nein")`. Was steht in `C2`?"""
+prompt.distractors = [
+  """`Ja`, weil 17 fast 18 ist und aufgerundet wird.""",
+  """`WAHR`, weil `WENN` immer einen Wahrheitswert ausgibt.""",
+  """`17`, weil das Alter einfach kopiert wird.""",
+]
+answer.answer = """`Nein`, weil `17>=18` den Wahrheitswert `FALSCH` liefert."""
+context = """17 ist kleiner als 18, also ist der Vergleich `FALSCH` und `WENN` nimmt das dritte Argument. Aufgerundet wird hier nichts. `WENN` gibt gerade keinen Wahrheitswert aus, sondern "Ja" oder "Nein". Und das Alter wird nicht kopiert, sondern geprüft."""
+id = "8765c525-2553-412a-b111-634014b7b098"

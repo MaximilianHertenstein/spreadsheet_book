@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was liefert die Formel `=NICHT(WAHR)`?"""
+prompt.distractors = [
+  """`WAHR`, weil `NICHT` nichts ändert.""",
+  """`0`, weil `NICHT` in Zahlen umwandelt.""",
+  """Eine Fehlermeldung, weil `NICHT` zwei Argumente braucht.""",
+]
+answer.answer = """`FALSCH`, weil `NICHT` den Wahrheitswert umkehrt."""
+context = """`NICHT` dreht um: aus `WAHR` wird `FALSCH` und umgekehrt. Es ändert also gerade etwas. Umgewandelt in Zahlen wird dabei nichts, und `NICHT` braucht nur einen einzigen Wahrheitswert."""
+id = "9e680852-2111-4485-916a-881be04cfff6"

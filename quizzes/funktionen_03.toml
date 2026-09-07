@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Die Zellen enthalten `3`, `7` und `2`. Was liefert `=MAX(A1:A3)` und was liefert `=MIN(A1:A3)`?"""
+prompt.distractors = [
+  """`MAX` liefert `2` und `MIN` liefert `7`, weil beide vom Ende her suchen.""",
+  """`MAX` liefert `12` und `MIN` liefert `3`, weil `MAX` alles addiert.""",
+  """Beide liefern `7`, weil sie die erste gefundene Zahl nehmen.""",
+]
+answer.answer = """`MAX` liefert `7` und `MIN` liefert `2`."""
+context = """`MAX` sucht die größte Zahl, `MIN` die kleinste. Wer die beiden vertauscht, hat die Namen verwechselt. `MAX` addiert nichts, das wäre `SUMME`. Und es wird immer über alle Werte geschaut, nicht nur über den ersten."""
+id = "c7ba05ab-1f93-49b1-9124-8c3a82805020"

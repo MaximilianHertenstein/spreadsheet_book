@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `B4` steht `=A1+2`. Du änderst `A1` von `10` auf `20`. Was passiert mit `B4`?"""
+prompt.distractors = [
+  """`B4` bleibt bei `12`, weil der alte Wert kopiert wurde.""",
+  """`B4` wird leer und die Formel muss neu eingegeben werden.""",
+  """`B4` zeigt eine Fehlermeldung, weil sich eine Eingabe geändert hat.""",
+]
+answer.answer = """`B4` zeigt automatisch `22`, ohne dass du etwas neu eingeben musst."""
+context = """Genau das ist der Sinn von Verweisen: `B4` merkt sich keine feste Zahl, sondern die Rechnung mit `A1`. Ändert sich `A1`, rechnet die Tabellenkalkulation sofort neu. Wer etwas neu eingeben oder einen Fehler erwartet, denkt an statisches Kopieren statt an eine lebendige Formel."""
+id = "643f77ff-9c40-4b73-9439-a5cb74aca2c4"

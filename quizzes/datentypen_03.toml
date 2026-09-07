@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `A1` steht ein Datum. Was liefern `=JAHR(A1)`, `=MONAT(A1)` und `=TAG(A1)`?"""
+prompt.distractors = [
+  """Sie erzeugen aus drei Zahlen ein neues Datum.""",
+  """Sie runden das Datum auf volle Jahre, Monate oder Tage.""",
+  """Sie prüfen, ob das Datum in der Zukunft liegt.""",
+]
+answer.answer = """Sie holen Jahr, Monat oder Tag aus dem Datum heraus."""
+context = """Die drei Funktionen zerlegen ein Datum in seine Teile: `JAHR` gibt das Jahr zurück, `MONAT` den Monat, `TAG` den Tag. Ein neues Datum bauen sie nicht, sie lesen nur aus. Runden und Zukunft prüfen können sie nicht."""
+id = "9aaad42b-bd3b-41d4-ae39-fce974345330"

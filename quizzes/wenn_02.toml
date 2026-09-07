@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `C2` steht `=WENN(B2>=18;"Ja";"Nein")`. Was berechnet die Tabellenkalkulation zuerst?"""
+prompt.distractors = [
+  """Sie schreibt zuerst "Ja" in die Zelle und prüft danach.""",
+  """Sie entscheidet zuerst, ob "Ja" oder "Nein" schöner aussieht.""",
+  """Sie rechnet alles gleichzeitig, eine Reihenfolge gibt es nicht.""",
+]
+answer.answer = """Sie berechnet zuerst den Vergleich `B2>=18` und nutzt den Wahrheitswert dann in `WENN`."""
+context = """`WENN` braucht als erstes Argument einen Wahrheitswert, also wird der Vergleich `B2>=18` zuerst ausgewertet. Erst danach wird entschieden, ob "Ja" oder "Nein" herauskommt. Einfach drauflos "Ja" zu schreiben wäre Raten statt Rechnen."""
+id = "7d7c5e6b-a477-4b9d-9362-8e6c9de17c67"

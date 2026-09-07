@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Womit muss jede Formel in einer Zelle beginnen?"""
+prompt.distractors = [
+  """Mit einem `+` als erstem Zeichen, zum Beispiel `+5+3`.""",
+  """Mit einem `#` als erstem Zeichen, zum Beispiel `#5+3`.""",
+  """Gar nicht, `5+3` wird auch ohne Sonderzeichen berechnet.""",
+]
+answer.answer = """Mit einem `=` als erstem Zeichen, zum Beispiel `=5+3`."""
+context = """Nur das `=` am Anfang sagt der Tabellenkalkulation, dass sie rechnen soll. Wer `+` aus dem Matheheft übernimmt, bekommt keinen Wert berechnet. Das `#` kennt die Tabellenkalkulation hier nicht. Und ohne `=` bleibt `5+3` einfach als Text in der Zelle stehen."""
+id = "d32059f6-acd7-44b8-882a-1b58fd01ce81"

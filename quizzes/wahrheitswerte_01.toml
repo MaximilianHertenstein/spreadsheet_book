@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Welche Wahrheitswerte gibt es in der Tabellenkalkulation?"""
+prompt.distractors = [
+  """`1` und `0`, weil wahr und falsch als Zahlen gespeichert werden.""",
+  """`Ja` und `Nein`, weil das die Antwort auf jede Frage ist.""",
+  """`TRUE` und `FALSE`, weil die Funktionen englische Namen haben.""",
+]
+answer.answer = """`WAHR` und `FALSCH`, und nur diese beiden."""
+context = """Es gibt genau zwei Wahrheitswerte mit deutschen Namen: `WAHR` und `FALSCH`. Die Zahlen 1 und 0 können zwar so aussehen, sind aber Zahlen. `Ja` und `Nein` sind Texte, die man erst mit `WENN` aus Wahrheitswerten erzeugt. Und die Funktionsnamen in diesem Buch sind deutsch."""
+id = "ec12ae64-210f-4ec7-a587-5248a87491c9"

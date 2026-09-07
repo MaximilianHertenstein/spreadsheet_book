@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In welcher Reihenfolge stehen die vier Argumente von `SVERWEIS`?"""
+prompt.distractors = [
+  """Tabelle, Suchkriterium, Bereichsverweis, Spaltennummer.""",
+  """Spaltennummer, Tabelle, Suchkriterium, Bereichsverweis.""",
+  """Suchkriterium, Spaltennummer, Tabelle, Bereichsverweis.""",
+]
+answer.answer = """Suchkriterium, Tabelle, Spaltennummer, Bereichsverweis."""
+context = """Die Reihenfolge ist fest: erst was gesucht wird, dann wo gesucht wird, dann aus welcher Spalte das Ergebnis kommt, dann ob genau gesucht wird. Wer mit der Tabelle anfängt, dreht die Logik um. Die Spaltennummer gehört hinter die Tabelle, nicht davor."""
+id = "ced5d091-93d7-4d8f-b74b-89962fe7ba4c"

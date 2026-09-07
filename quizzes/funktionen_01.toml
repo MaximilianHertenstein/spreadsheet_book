@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du willst mit `SUMME` die Werte der einzelnen Zellen `A1`, `B1` und `C1` addieren. Wie trennst du die Zellen in der Klammer?"""
+prompt.distractors = [
+  """Mit Komma: `=SUMME(A1,B1,C1)`, wie im Englischen.""",
+  """Mit Doppelpunkt: `=SUMME(A1:B1:C1)`, wie bei einem Bereich.""",
+  """Mit Plus: `=SUMME(A1+B1+C1)`, wie in einer normalen Rechnung.""",
+]
+answer.answer = """Mit Semikolon: `=SUMME(A1;B1;C1)`."""
+context = """Einzelne Zellen werden in Deutschland mit `;` getrennt. Das Komma ist hier das Dezimalzeichen und würde die Formel zerreißen. Der Doppelpunkt beschreibt einen zusammenhängenden Bereich und kein Aufzählen einzelner Zellen, und ein `+` gehört in eine Rechnung, nicht in die Klammer einer Funktion."""
+id = "936d6c63-26b3-4944-8b64-da299731f11f"

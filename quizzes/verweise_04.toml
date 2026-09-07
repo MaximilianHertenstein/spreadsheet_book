@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was nennt man in einer Tabellenkalkulation eine Formel?"""
+prompt.distractors = [
+  """Einen fest eingetippten Wert, der sich nie ändert.""",
+  """Eine Formatierung wie Fettdruck oder Hintergrundfarbe.""",
+  """Ein Diagramm, das Zahlen als Balken zeigt.""",
+]
+answer.answer = """Eine Rechnung, die Verweise auf andere Zellen enthalten kann und sich automatisch aktualisiert."""
+context = """Eine Formel beginnt mit `=` und kann Zellnamen enthalten, zum Beispiel `=A1+2`. Feste Werte ohne `=` sind keine Formeln. Formatierung ändert nur das Aussehen und Diagramme zeigen Werte nur an, sie rechnen nichts neu."""
+id = "87615b8a-0414-4971-ad3e-f554801a8b82"

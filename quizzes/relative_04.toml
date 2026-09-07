@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `B1` steht `=2*A1`. Du ziehst die Zelle zwei Schritte nach unten bis `B3`. Welche Formel steht in `B3`?"""
+prompt.distractors = [
+  """`=2*A1`, weil Ziehen nur kopiert und nichts anpasst.""",
+  """`=2*A2`, weil die Anpassung nur einmal passiert.""",
+  """`=2*B3`, weil Zeile und Spalte vertauscht werden.""",
+]
+answer.answer = """`=2*A3`, weil jeder Schritt nach unten die Zeilennummer um 1 erhöht."""
+context = """Die Anpassung passiert bei jedem Schritt: von `B1` nach `B2` wird `A1` zu `A2`, von `B2` nach `B3` wird `A2` zu `A3`. Wer nur einmal anpasst, unterschätzt das Weiterziehen. Und Spalten ändern sich beim Runterziehen nie."""
+id = "f04bc776-acfe-43d4-b1d8-01687616d224"

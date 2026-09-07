@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `A2` steht die Formel `=A1*2`. Du ziehst sie nach rechts in die Zelle `B2`. Welche Formel steht danach in `B2`?"""
+prompt.distractors = [
+  """`=A1*2`, weil die Formel beim Ziehen unverändert bleibt.""",
+  """`=A2*2`, weil der Verweis auf die Ausgangszelle zeigt.""",
+  """`=C1*2`, weil die Spalte um zwei Buchstaben weiterspringt.""",
+]
+answer.answer = """`=B1*2`, weil jede Spalte durch die nächste Spalte ersetzt wird."""
+context = """Nach rechts ziehen heißt: eine Spalte weiter, also wird aus `A1` die Zelle `B1`. So wie beim Runterziehen die Zeilen wandern, wandern beim Rechtsziehen die Spalten. Die Formel bleibt nicht starr, sie zeigt nicht auf ihre alte Ausgangszelle, und sie springt auch nicht zwei Spalten weit."""
+id = "b2a439ed-c02c-43ca-a8c7-61c348c6fccf"

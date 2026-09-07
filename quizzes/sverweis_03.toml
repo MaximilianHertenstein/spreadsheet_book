@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bedeutet die `0` am Ende von `=SVERWEIS(B8;A2:D6;2;0)`?"""
+prompt.distractors = [
+  """Dass bei der Suche ungefähr passende Werte reichen.""",
+  """Dass null Treffer erlaubt sind und dann `0` ausgegeben wird.""",
+  """Dass ab Spalte 0 gezählt wird.""",
+]
+answer.answer = """Dass der gesuchte Wert genau übereinstimmen muss."""
+context = """Die `0` schaltet auf genaue Suche: nur die exakt gleiche Schülernummer zählt. Für ungefähre Suche stünde dort etwas anderes. Und `0` als Ergebnis bei fehlendem Treffer gibt es nicht, dann meldet die Tabelle einen Fehler."""
+id = "e0e2517b-0b14-4b2c-a847-f5ad443568d3"

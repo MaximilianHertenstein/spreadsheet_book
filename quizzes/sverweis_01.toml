@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Die Formel `=SVERWEIS(B8;A2:D6;2;0)` sucht den Wert aus `B8`. Wo wird gesucht?"""
+prompt.distractors = [
+  """In der ersten Zeile `A2:D2`, weil dort die Überschriften stehen.""",
+  """In der ganzen Tabelle `A2:D6` überall gleichzeitig, auch in den hinteren Spalten.""",
+  """In der letzten Spalte `D2:D6`, weil dort das Ergebnis steht.""",
+]
+answer.answer = """In der ersten Spalte des Bereichs, also in `A2:A6`."""
+context = """`SVERWEIS` sucht immer nur in der ersten Spalte des angegebenen Bereichs. Die erste Zeile enthält meist Überschriften und wird nicht als Suchspalte behandelt. Die hinteren Spalten liefern später das Ergebnis, gesucht wird dort nicht."""
+id = "a9522c71-c1cc-4584-9d3d-b6200c8e4d66"

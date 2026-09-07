@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In einer Zelle steht die Formel `=5=5`. Was wird in der Zelle angezeigt?"""
+prompt.distractors = [
+  """`5`, weil nur einmal gerechnet wird.""",
+  """Der Text `=5=5`, weil zwei Gleichheitszeichen nicht gehen.""",
+  """Eine Fehlermeldung, weil ein `=` zu viel dasteht.""",
+]
+answer.answer = """`WAHR`, weil verglichen wird, ob 5 gleich 5 ist."""
+context = """Das erste `=` startet wie immer die Formel, das zweite `=` ist der Vergleich. Verglichen wird 5 mit 5, das stimmt, also steht `WAHR` da. Wer `5` erwartet, hat den Vergleich übersehen. Zwei `=` sind kein Fehler, sie haben nur verschiedene Aufgaben."""
+id = "85ea9902-0e52-4523-a2df-7acf00db94eb"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was bedeutet die `2` in der Formel `=SVERWEIS(B8;A2:D6;2;0)`?"""
+prompt.distractors = [
+  """Die Zeilennummer, aus der der Wert zurückgegeben wird.""",
+  """Die Anzahl der Treffer, die zurückgegeben werden.""",
+  """Den Suchwert, nach dem in der Tabelle gesucht wird.""",
+]
+answer.answer = """Die Spaltennummer im Bereich, aus der der Wert zurückgegeben wird."""
+context = """Gezählt wird innerhalb des Bereichs: Spalte 1 ist `A`, Spalte 2 ist `B`, aus derselben gefundenen Zeile kommt der Wert aus Spalte 2. Eine Zeilennummer ist das nicht, gesucht wird in Zeilen. Und der Suchwert steht ganz vorne als erstes Argument in `B8`."""
+id = "1ef6f266-af34-4d1e-b321-537d1a873009"

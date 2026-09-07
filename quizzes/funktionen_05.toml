@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `A1:A5` stehen drei Zahlen und zwei Texte. Was liefern `=ANZAHL(A1:A5)` und `=ANZAHL2(A1:A5)`?"""
+prompt.distractors = [
+  """`ANZAHL` liefert `5` und `ANZAHL2` liefert `3`, weil beide vertauscht gezählt werden.""",
+  """Beide liefern `5`, weil Zählen immer alles zählt.""",
+  """Beide liefern `3`, weil Texte nie mitgezählt werden.""",
+]
+answer.answer = """`ANZAHL` liefert `3` und `ANZAHL2` liefert `5`."""
+context = """`ANZAHL` zählt nur Zahlen, also 3. `ANZAHL2` zählt alle nicht leeren Zellen, also 3 Zahlen plus 2 Texte gleich 5. Wer beide gleichsetzt, hat den Unterschied zwischen Zahlen zählen und Zellen zählen übersehen."""
+id = "b680501c-5203-4218-bfb1-26d22ce852d6"

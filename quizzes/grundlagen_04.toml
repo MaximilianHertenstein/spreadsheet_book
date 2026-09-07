@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In einer Zelle steht die Formel `=12/4`. Welcher Wert wird in der Zelle angezeigt?"""
+prompt.distractors = [
+  """`8`, weil `/` für minus steht.""",
+  """`48`, weil `/` für mal steht.""",
+  """`12/4`, weil die Formel als Text angezeigt wird.""",
+]
+answer.answer = """`3`, weil `/` für geteilt steht."""
+context = """Der Schrägstrich `/` bedeutet Division, also 12 geteilt durch 4 gleich 3. Wer `8` antwortet, hat `/` mit `-` verwechselt. Wer `48` antwortet, hat `/` mit `*` verwechselt. Die Formel wird nur dann als Text gezeigt, wenn das `=` am Anfang fehlt."""
+id = "cf6ced8c-27ce-45ef-9797-4d780055de93"

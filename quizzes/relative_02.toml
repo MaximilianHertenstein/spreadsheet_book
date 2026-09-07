@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was passiert allgemein mit den Zeilennummern, wenn du eine Zelle mit Formel nach unten ziehst?"""
+prompt.distractors = [
+  """Sie bleiben gleich, weil Verweise immer fest sind.""",
+  """Sie werden um 2 erhöht, weil die Startzeile mitgezählt wird.""",
+  """Sie werden zu Spaltenbuchstaben, weil sich die Richtung ändert.""",
+]
+answer.answer = """Jede Zeilennummer wird um 1 erhöht."""
+context = """Nach unten ziehen heißt: eine Zeile weiter, also alle Zeilennummern plus 1. Wer glaubt, sie bleiben gleich, denkt an absolute Verweise mit `$`. Plus 2 wäre ein Schritt zu viel, und Zeilen werden niemals zu Buchstaben, Buchstaben gehören zu Spalten."""
+id = "9ad4fa5d-186a-4c92-9389-c6586c739294"

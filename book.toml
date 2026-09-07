@@ -6,3 +6,5 @@ language = "de"
 [output.html]
 additional-css = ["src/css/spreadsheet.css"]
 additional-js = ["src/js/spreadsheet.js"]
+
+[preprocessor.quiz]

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Der Einzelpreis steht in `E1` und darf sich beim Ziehen nach unten nicht verändern. Wie musst du `E1` in der Formel schreiben?"""
+prompt.distractors = [
+  """`$E1`, weil das Dollarzeichen vor der Spalte die Zeile festhält.""",
+  """`E1$`, weil das Dollarzeichen hinter die feste Stelle gehört.""",
+  """`*E1`, weil ein Stern die Zelle verriegelt.""",
+]
+answer.answer = """`E$1`, weil das Dollarzeichen vor der Zeilennummer diese festhält."""
+context = """Das `$` schützt genau das, wovor es steht: `E$1` hält die Zeile 1 fest, die Spalte E darf sich weiter anpassen. `$E1` wäre das Gegenteil und hält die Spalte fest, während die Zeile weiterläuft, also genau der häufige Fehler. `E1$` und `*E1` versteht die Tabellenkalkulation nicht."""
+id = "bdd9c449-bb24-40a3-b309-0befc11c8a3e"

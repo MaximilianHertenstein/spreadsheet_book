@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wann liefert `=UND(A1;A2)` den Wert `WAHR`?"""
+prompt.distractors = [
+  """Wenn mindestens eine der beiden Bedingungen `WAHR` ist.""",
+  """Wenn genau eine Bedingung `WAHR` und die andere `FALSCH` ist.""",
+  """Wenn beide Bedingungen `FALSCH` sind.""",
+]
+answer.answer = """Nur wenn beide Bedingungen `WAHR` sind."""
+context = """`UND` ist streng: beide Seiten müssen stimmen. Schon ein `FALSCH` macht das Ganze `FALSCH`. Wer bei einer wahren Bedingung schon `WAHR` erwartet, denkt an `ODER`. Genau eine wahre Bedingung reicht bei `UND` gerade nicht."""
+id = "81f02241-a8b2-45bb-aa21-ec31269f6a7c"

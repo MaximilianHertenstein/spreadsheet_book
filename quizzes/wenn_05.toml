@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `B2` stehen `60` Punkte. Die Formel lautet `=WENN(B2>75;"Sehr gut";WENN(B2>50;"Bestanden";"Nicht bestanden"))`. Was wird ausgegeben?"""
+prompt.distractors = [
+  """`Sehr gut`, weil 60 Punkte eine gute Leistung sind.""",
+  """`Nicht bestanden`, weil die erste Prüfung schon falsch war und abgebrochen wird.""",
+  """`WAHR`, weil ein Vergleich in der Formel vorkommt.""",
+]
+answer.answer = """`Bestanden`, weil `B2>75` falsch und `B2>50` wahr ist."""
+context = """Der Reihe nach: 60 ist nicht über 75, also geht es in das zweite `WENN`. 60 ist über 50, also kommt "Bestanden" heraus. Gefühlte Leistung zählt nicht, nur die Grenzen. Und nach der ersten falschen Prüfung wird nicht abgebrochen, sondern die zweite geprüft."""
+id = "ec286a87-09cf-4b37-94aa-75fbf73c5bf0"

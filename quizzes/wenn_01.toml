@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Welche drei Argumente bekommt die Funktion `WENN` in der richtigen Reihenfolge?"""
+prompt.distractors = [
+  """Wert wenn falsch, Wert wenn wahr, Wahrheitswert.""",
+  """Wahrheitswert, Wert wenn falsch, Wert wenn wahr.""",
+  """Nur Wahrheitswert und ein Ergebnis, das zweite ergibt sich von selbst.""",
+]
+answer.answer = """Wahrheitswert, Wert wenn wahr, Wert wenn falsch."""
+context = """Die Reihenfolge ist fest: erst die Bedingung als Wahrheitswert, dann das Ergebnis für `WAHR`, dann das für `FALSCH`. Wer die beiden Ergebnisse vertauscht, bekommt genau die falsche Ausgabe. Und mit nur zwei Argumenten fehlt ein Fall, die Funktion braucht alle drei."""
+id = "2ba70605-862e-4aec-9c17-3b69ffeede27"

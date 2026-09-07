@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wann brauchst du in einer Formel einen absoluten Verweis mit `$`?"""
+prompt.distractors = [
+  """Wenn jede Zeile mit einem anderen Einzelpreis aus ihrer eigenen Zeile rechnet.""",
+  """Wenn die Formel nur in einer einzigen Zelle steht und nie gezogen wird.""",
+  """Wenn du statt einer Formel lieber einen festen Wert eintippen willst.""",
+]
+answer.answer = """Wenn alle Zeilen mit derselben festen Zelle rechnen, zum Beispiel dem Einzelpreis in `E1`."""
+context = """Der `$` schützt eine Zelle vor dem Mitwandern beim Ziehen. Das brauchst du genau dann, wenn sich alle gezogenen Formeln auf eine einzige feste Zelle beziehen sollen. Rechnet jede Zeile mit ihrer eigenen Nachbarzelle, sind relative Verweise richtig. Wird gar nicht gezogen, läuft auch nichts weg und es braucht kein `$`."""
+id = "ebec34f8-f7ae-4a5a-94b5-8cfd3ceacca1"

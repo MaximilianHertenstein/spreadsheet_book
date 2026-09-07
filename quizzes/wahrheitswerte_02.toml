@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Mit welchem Operator prüfst du, ob zwei Werte ungleich sind?"""
+prompt.distractors = [
+  """`!=`, wie in vielen Programmiersprachen.""",
+  """`><`, weil die Zeichen einfach umgedreht werden.""",
+  """`=/=`, weil das Gleichheitszeichen durchgestrichen wird.""",
+]
+answer.answer = """`<>`, zum Beispiel `=5<>3`."""
+context = """Ungleich heißt in der Tabellenkalkulation `<>`. Das `!=` aus dem Programmieren versteht sie nicht. `><` und `=/=` sehen zwar nach ungleich aus, sind aber keine gültigen Operatoren, die Zelle meldet einen Fehler."""
+id = "c49792eb-e120-42c1-b25b-952027046bd7"

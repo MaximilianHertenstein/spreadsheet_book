@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was lässt sich in der Tabellenkalkulation sinnvoll miteinander vergleichen?"""
+prompt.distractors = [
+  """Zahlen mit Texten, zum Beispiel `=5="Anna"`.""",
+  """Nur Zahlen, Texte kann man nie vergleichen.""",
+  """Nur Wahrheitswerte, alles andere liefert immer einen Fehler.""",
+]
+answer.answer = """Zahlen mit Zahlen und Texte mit Texten, zum Beispiel `="Anna"="Anna"`."""
+context = """Gleiches wird mit Gleichem verglichen: Zahlen mit Zahlen und Texte mit Texten, etwa ob zwei Namen gleich sind. Zahlen gegen Texte zu prüfen gibt keinen sinnvollen Wahrheitswert. Und Texte sind keineswegs vom Vergleich ausgeschlossen, Gleichheit von Texten kommt ständig vor."""
+id = "0bb7726a-d22a-47a3-b5d2-77a1738e9f72"

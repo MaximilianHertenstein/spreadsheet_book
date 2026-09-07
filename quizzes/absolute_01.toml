@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Für jede Menge in Spalte A soll der Gesamtpreis mit dem Einzelpreis aus `E1` berechnet werden. Die Formel `=A2*E1` aus `B2` wird nach unten gezogen. Warum steht in `B3` etwas Falsches?"""
+prompt.distractors = [
+  """Weil man Formeln grundsätzlich nicht nach unten ziehen darf.""",
+  """Weil die Multiplikation mit Preisen verboten ist und einen Fehler liefert.""",
+  """Weil `A2` falsch angepasst wurde und hätte `A2` bleiben müssen.""",
+]
+answer.answer = """Weil auch `E1` relativ angepasst wurde und zu `E2` geworden ist."""
+context = """Das Ziehen passt alle Verweise an: gewünscht war `A2` zu `A3`, aber ungewollt wurde `E1` zu `E2`. Dort steht kein Preis mehr. Die Anpassung von `A2` war also richtig, nur `E1` hätte fest bleiben müssen. Genau dafür gibt es absolute Verweise mit `$`."""
+id = "25c8a56d-bb1e-407a-82b2-27d9c667a037"

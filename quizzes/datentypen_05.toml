@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wie arbeitest du in der Tabellenkalkulation mit Wahrheitswerten?"""
+prompt.distractors = [
+  """Mit `SUMME` addieren und mit `RUNDEN` runden.""",
+  """Gar nicht, Wahrheitswerte lassen sich nicht weiterverwenden.""",
+  """Nur in Diagrammen anzeigen, in Formeln sind sie verboten.""",
+]
+answer.answer = """Mit `UND` und `ODER` verknüpfen, mit `NICHT` umkehren und mit `WENN` einen Text ausgeben."""
+context = """Wahrheitswerte entstehen bei Vergleichen und werden dann verknüpft (`UND`, `ODER`), umgekehrt (`NICHT`) oder mit `WENN` in eine Ausgabe verwandelt. `SUMME` und `RUNDEN` sind Zahlenfunktionen und hier falsch. Und verboten sind Wahrheitswerte in Formeln gerade nicht, dafür sind sie da."""
+id = "faeb2870-e42e-4f98-99f2-fbb2b558243e"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `A2` steht der Text `Anna`. In `B2` steht die Formel `=A2+1`. Was steht in `B2`?"""
+prompt.distractors = [
+  """`Anna1`, weil die 1 an den Text gehängt wird.""",
+  """`1`, weil der Text ignoriert und nur gerechnet wird.""",
+  """`0`, weil Texte immer den Wert 0 haben.""",
+]
+answer.answer = """Ein Fehler, weil man mit Texten nicht wie mit Zahlen rechnen kann."""
+context = """Texte sind Zeichenketten wie Namen oder Überschriften, keine Zahlen. Plus, minus, mal und geteilt mit Texten liefern einen Fehler. Ange­hängt wird nichts, und Texte werden auch nicht still zu 0 oder 1, das wäre geraten statt gerechnet."""
+id = "1eaf33fc-f843-4196-919e-985208004f77"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `A1` steht die Zahl `10`. In `B4` steht die Formel `=A1+2`. Was wird in `B4` angezeigt?"""
+prompt.distractors = [
+  """`A1+2`, weil der Verweis als Text angezeigt wird.""",
+  """`102`, weil `10` und `2` aneinandergehängt werden.""",
+  """`10`, weil nur der Verweis zählt und die `+2` ignoriert wird.""",
+]
+answer.answer = """`12`, weil der Verweis `A1` durch seinen Wert `10` ersetzt und dann gerechnet wird."""
+context = """Ein Verweis holt den aktuellen Wert der anderen Zelle, hier also 10, und rechnet dann normal weiter: 10 + 2 = 12. Als Text erscheint die Formel nur ohne `=` am Anfang. Aneinanderhängen statt Rechnen passiert bei Zahlen nicht, und die `+2` wird natürlich mitberechnet."""
+id = "db17a946-e834-475c-a1b2-b3311098bbe6"

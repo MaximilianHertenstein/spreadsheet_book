@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Die gesuchte Schülernummer steht nicht in der Tabelle. Was liefert `=SVERWEIS(B8;A2:D6;2;0)`?"""
+prompt.distractors = [
+  """Eine leere Zelle, weil nichts gefunden wurde.""",
+  """Eine `0`, weil kein Treffer null Punkte bedeutet.""",
+  """Den ersten Wert der Spalte, weil ersatzweise der Anfang genommen wird.""",
+]
+answer.answer = """Einen Fehler, weil es keine passende Zeile gibt."""
+context = """Bei genauer Suche mit `0` gibt es kein Raten: ohne Treffer meldet die Tabellenkalkulation einen Fehler statt still leer zu bleiben oder `0` zu erfinden. Auch der erste Wert wäre ein falscher Treffer und wird nicht genommen."""
+id = "1633e731-1827-4d3f-bc16-413d6c01a0d0"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wann liefert `=ODER(A1;A2)` den Wert `WAHR`?"""
+prompt.distractors = [
+  """Nur wenn beide Bedingungen `WAHR` sind.""",
+  """Nur wenn genau eine Bedingung `WAHR` ist, bei zweien wird es `FALSCH`.""",
+  """Nur wenn beide Bedingungen `FALSCH` sind.""",
+]
+answer.answer = """Wenn mindestens eine der beiden Bedingungen `WAHR` ist."""
+context = """`ODER` ist großzügig: eine wahre Bedingung reicht, zwei wahre gehen auch. Nur wenn beide `FALSCH` sind, kommt `FALSCH` heraus. Wer beide verlangt, denkt an `UND`. Und zwei wahre Bedingungen kippen bei `ODER` nicht zurück auf `FALSCH`."""
+id = "cca96f5a-f9d4-48c1-8a54-6c449b60dd33"

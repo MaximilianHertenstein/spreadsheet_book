@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Woraus besteht ein Datum in der Tabellenkalkulation?"""
+prompt.distractors = [
+  """Aus Stunden, Minuten und Sekunden.""",
+  """Aus Jahr, Zahl und Wahrheitswert.""",
+  """Aus einem freien Text, der zufällig wie ein Datum aussieht.""",
+]
+answer.answer = """Aus Tag, Monat und Jahr."""
+context = """Ein Datum hat drei Teile: Tag, Monat und Jahr. Stunden, Minuten und Sekunden gehören zur Uhrzeit, nicht zum Datum. Und ein Datum ist ein eigener Datentyp zum Rechnen und Vergleichen, nicht bloß Deko-Text."""
+id = "6b0bdb7f-d235-4ec0-a941-995035b29cb7"

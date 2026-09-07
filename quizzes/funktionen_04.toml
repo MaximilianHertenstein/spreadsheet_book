@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Du willst den Durchschnitt der Zahlen in `A1:A5` berechnen. Welche Funktion nimmst du?"""
+prompt.distractors = [
+  """`SUMME`, weil die Summe geteilt durch nichts auch der Durchschnitt ist.""",
+  """`PRODUKT`, weil malnehmen und Durchschnitt dasselbe sind.""",
+  """`ANZAHL`, weil Zählen und Durchschnitt dasselbe sind.""",
+]
+answer.answer = """`MITTELWERT`, zum Beispiel `=MITTELWERT(A1:A5)`."""
+context = """Nur `MITTELWERT` teilt die Summe durch die Anzahl und liefert den Durchschnitt. `SUMME` addiert nur, `PRODUKT` multipliziert alle Zahlen miteinander und `ANZAHL` zählt nur, wie viele Zahlen dastehen. Alle drei klingen nach Zusammenfassen, rechnen aber etwas anderes."""
+id = "a78154e1-0091-4cb6-8750-5ddbb4903923"

@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Welches Zeichen musst du in einer Formel für die Multiplikation verwenden?"""
+prompt.distractors = [
+  """`x`, zum Beispiel `=3x4`.""",
+  """`·`, zum Beispiel `=3·4`.""",
+  """`,`, zum Beispiel `=3,4`.""",
+]
+answer.answer = """`*`, zum Beispiel `=3*4`."""
+context = """In der Tabellenkalkulation gilt nur `*` für mal. Das `x` aus dem Heft und der Mittelpunkt `·` versteht das Programm nicht. Das Komma ist in Deutschland das Dezimaltrennzeichen, also wäre `=3,4` die Zahl dreikommavier und keine Multiplikation."""
+id = "085b192f-f2f2-4f70-88af-e4bfa7707e89"

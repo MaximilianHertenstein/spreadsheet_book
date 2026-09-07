@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Wie heißt die Zelle in Spalte B und Zeile 3?"""
+prompt.distractors = [
+  """`3B`, weil zuerst die Zeile und dann die Spalte genannt wird.""",
+  """`B:3`, weil Spalte und Zeile mit Doppelpunkt verbunden werden.""",
+  """`B-3`, weil Spalte und Zeile mit Bindestrich verbunden werden.""",
+]
+answer.answer = """`B3`, also erst die Spalte, dann die Zeile."""
+context = """Der Zellname ist immer Spaltenbuchstabe plus Zeilennummer, ohne Zeichen dazwischen: `B3`. Die Form `3B` dreht die Reihenfolge um. Der Doppelpunkt `B:3` beschreibt einen Bereich und kein einzelnes Feld, und `B-3` liest das Programm als Rechnung (B minus 3)."""
+id = "e6350fd7-3426-4f7b-8b7e-d7c1cd12e051"

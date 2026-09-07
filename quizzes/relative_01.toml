@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """In `B1` steht die Formel `2*A1` (gemeint: `=2*A1`). Du ziehst den Inhalt von `B1` nach unten in die Zelle `B2`. Welche Formel steht danach in `B2`?"""
+prompt.distractors = [
+  """`2*A1`, weil die Formel beim Ziehen unverändert kopiert wird.""",
+  """`2*B1`, weil die Spalte statt der Zeile angepasst wird.""",
+  """`2*A3`, weil die Zeilennummer um 2 erhöht wird.""",
+]
+answer.answer = """`2*A2`, weil die Zeilennummer beim Ziehen nach unten um 1 erhöht wird."""
+context = """Beim Ziehen nach unten passt die Tabellenkalkulation relative Verweise automatisch an: aus Zeile 1 wird Zeile 2. Die Formel wird also nicht starr kopiert. Die Spalte bleibt gleich, nur die Zeile wandert, und zwar genau um eine Zeile pro Schritt, nicht um zwei."""
+id = "eb410bed-dc22-4a54-b7f3-002901152a85"

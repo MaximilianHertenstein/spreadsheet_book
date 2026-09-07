@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Die Werte stehen in einer Zeile von `A2` bis `D2`. Wie übergibst du sie kurz an `SUMME`?"""
+prompt.distractors = [
+  """`=SUMME(A2;D2)`, weil Anfangs- und Endzelle mit Semikolon verbunden werden.""",
+  """`=SUMME(A2+D2)`, weil die Zellen addiert werden.""",
+  """`=SUMME(A2,D2)`, weil Bereiche mit Komma geschrieben werden.""",
+]
+answer.answer = """`=SUMME(A2:D2)`, also erste Zelle, Doppelpunkt, letzte Zelle."""
+context = """Der Doppelpunkt `ersteZelle:letzteZelle` meint alle Zellen dazwischen, egal ob Zeile, Spalte oder Rechteck. Mit Semikolon würdest du nur die zwei Endzellen addieren und alles dazwischen vergessen. Plus und Komma beschreiben keinen Bereich."""
+id = "bdc46a21-c821-4213-b39b-a44706a0f5fc"
