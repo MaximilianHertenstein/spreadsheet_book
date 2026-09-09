@@ -13,7 +13,7 @@ Du kannst in Rechnungen auf andere Zellen verweisen. Dazu verwendest du den Name
 
 <div
 	class="ods-table"
-	data-select="B4"
+	data-select="B1"
 	data-file="tabellen/zellverweis.ods">
 </div>
 

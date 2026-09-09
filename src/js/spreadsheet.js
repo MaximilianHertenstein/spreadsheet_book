@@ -1,14 +1,5 @@
 (async () => {
-  if (document.readyState === "loading")
-    await new Promise(r => document.addEventListener("DOMContentLoaded", r, { once: true }));
-
-  if (!document.querySelector('link[data-hot]')) {
-    const l = document.createElement("link");
-    l.rel = "stylesheet"; l.dataset.hot = "1";
-    l.href = "https://cdn.jsdelivr.net/npm/handsontable@18.1.0/styles/ht-theme-main.min.css";
-    document.head.append(l);
-  }
-
+  if (document.readyState === "loading") await new Promise(r => document.addEventListener("DOMContentLoaded", r, { once: true }));
   const load = src => new Promise((res, rej) => {
     if (document.querySelector(`script[src="${src}"]`)) return res();
     const s = document.createElement("script");
@@ -29,15 +20,13 @@
   try { await window.__ods; }
   catch (e) { return els.forEach(el => el.textContent = "Ladefehler: " + e.message); }
 
-  const map = HyperFormula.languages.deDE.functions;
-
   // EN -> DE + ODS-Klammern -> A1 + "," -> ";" (ausser in "...")
   const norm = f => {
     const s = "=" + f.replace(/[\[\]]/g, "").replace(/:\./g, ":")
       .replace(/(^|[^\w$])\.(\$?[A-Z]{1,3}\$?\d+)/gi, "$1$2")
       .replace(/'([^']+)'\.(\$?[A-Z]{1,3}\$?\d+)/g, "'$1'!$2")
       .replace(/([\w$\u00C0-\u00FF]+)\.(\$?[A-Z]{1,3}\$?\d+)/g, "$1!$2")
-      .replace(/[A-Z][\w.]*?(?=\()/gi, n => map[n.toUpperCase()] || n);
+      .replace(/[A-Z][\w.]*?(?=\()/gi, n => HyperFormula.languages.deDE.functions[n.toUpperCase()] || n);
     return s.split('"').map((p, i) => i % 2 ? p : p.replace(/,/g, ";")).join('"');
   };
 
@@ -72,6 +61,7 @@
 
       const hot = new Handsontable(box, {
         data, rowHeaders: true, colHeaders: true, stretchH: "all", height: "auto",
+        outsideClickDeselects: false,
         theme: "ht-theme-main",
         licenseKey: "non-commercial-and-evaluation",
         formulas: { engine: HyperFormula.buildEmpty({ licenseKey: "internal-use-in-handsontable", language: "deDE", functionArgSeparator: ";" }), sheetName: name },

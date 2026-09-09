@@ -18,7 +18,7 @@ Danach folgt die Rechnung.
 
 <div
 	class="ods-table"
-	data-select="B2"
+	data-select="A2"
 	data-file="tabellen/plusrechnung.ods">
 </div>
 
@@ -33,6 +33,7 @@ Dabei kannst du folgende Rechenzeichen verwenden.
 
 <div
 	class="ods-table"
+	data-select="A1"
 	data-file="tabellen/rechenoperationen.ods">
 </div>
 

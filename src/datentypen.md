@@ -13,6 +13,7 @@ Zahlen können in Rechnungen verwendet werden.
 
 <div
 	class="ods-table"
+	data-select="B1"
 	data-file="tabellen/datentypen_zahlen.ods">
 </div>
 
@@ -27,6 +28,7 @@ führen.
 
 <div
 	class="ods-table"
+	data-select="B2"
 	data-file="tabellen/datentypen_texte.ods">
 </div>
 
@@ -43,6 +45,7 @@ einem Wahrheitswert ein Text ausgegeben werden.
 
 <div
 	class="ods-table"
+	data-select="A1"
 	data-file="tabellen/datentypen_wahrheitswerte.ods">
 </div>
 
@@ -56,6 +59,7 @@ Datums- und Zeitangaben können miteinander verglichen und berechnet werden.
 
 <div
 	class="ods-table"
+	data-select="D1"
 	data-file="tabellen/datentypen_datum.ods">
 </div>
 
