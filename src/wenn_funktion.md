@@ -27,7 +27,7 @@ Ist der Wahrheitswert `FALSCH`, wird der dritte Wert zurückgegeben.
 <div
     class="ods-table"
     data-select="D2"
-    data-file="../tabellen/wenn_wahrheitswert.ods">
+    data-file="tabellen/wenn_wahrheitswert.ods">
 </div>
 
 * Falls `C2` den Wert `WAHR` enthält, wird `Ja` in `D2` eingetragen.
@@ -50,7 +50,7 @@ Anschließend verwendet `WENN` den dabei entstandenen Wahrheitswert.
 <div
     class="ods-table"
     data-select="C2"
-    data-file="../tabellen/wenn_bedingung.ods">
+    data-file="tabellen/wenn_bedingung.ods">
 </div>
 
 ## Mehrere Alternativen
@@ -68,7 +68,7 @@ Im folgenden Beispiel wird zuerst geprüft, ob mehr als 75 Punkte erreicht wurde
 <div
     class="ods-table"
     data-select="C2"
-    data-file="../tabellen/wenn_mehrere_faelle.ods">
+    data-file="tabellen/wenn_mehrere_faelle.ods">
 </div>
 
 * Falls `B2>75` wahr ist, wird `Sehr gut` ausgegeben.
