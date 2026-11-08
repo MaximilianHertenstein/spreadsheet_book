@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Was ergibt der Vergleich `="Apfel"="Birne"`?"""
+prompt.distractors = [
+  """`WAHR`, weil beides Texte sind.""",
+  """Den Text `ApfelBirne`, weil Texte verbunden werden.""",
+  """Einen Fehler, weil Texte nicht verglichen werden können.""",
+]
+answer.answer = """`FALSCH`, weil die beiden Texte unterschiedlich sind."""
+context = """Texte können miteinander verglichen werden. Der Vergleich prüft hier, ob beide Texte gleich sind. Da `Apfel` und `Birne` verschieden sind, lautet das Ergebnis `FALSCH`."""
+id = "8925392b-ec8f-42bd-a2ea-98e0260b1098"

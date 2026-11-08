@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Welcher Vergleich prüft, ob eine Zahl mindestens 18 ist?"""
+prompt.distractors = [
+  """`Zahl>18`""",
+  """`Zahl<18`""",
+  """`Zahl=18`""",
+]
+answer.answer = """`Zahl>=18`"""
+context = """Mindestens 18 bedeutet 18 oder größer. Der Operator `>=` steht für größer oder gleich und schließt daher auch den Wert 18 ein."""
+id = "dfa8d899-b80e-4242-a2a8-ec6fcfb6a650"

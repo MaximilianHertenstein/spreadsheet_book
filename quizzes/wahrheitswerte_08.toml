@@ -1,0 +1,11 @@
+[[questions]]
+type = "MultipleChoice"
+prompt.prompt = """Welchen Wahrheitswert liefert die Formel `=6<=6`?"""
+prompt.distractors = [
+  """`FALSCH`, weil 6 nicht kleiner als 6 ist.""",
+  """`6`, weil der Vergleich die Zahl zurückgibt.""",
+  """Einen Fehler, weil zwei gleiche Zahlen nicht verglichen werden können.""",
+]
+answer.answer = """`WAHR`, weil `<=` auch gleiche Werte einschließt."""
+context = """Der Operator `<=` bedeutet kleiner oder gleich. Deshalb ist `6<=6` wahr. Ein Vergleich gibt einen Wahrheitswert zurück, nicht die verglichene Zahl."""
+id = "7fc33d72-50f7-4e8d-a5a2-f3d52a84b901"

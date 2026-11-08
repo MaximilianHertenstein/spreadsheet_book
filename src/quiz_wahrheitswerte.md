@@ -18,6 +18,18 @@ Prüfe, ob du Wahrheitswerte und Vergleiche verstehst. Jedes Quiz enthält genau
 
 {{#quiz ../quizzes/wahrheitswerte_07.toml}}
 
+## Quiz 5: Kleiner-gleich
+
+{{#quiz ../quizzes/wahrheitswerte_08.toml}}
+
+## Quiz 6: Texte vergleichen
+
+{{#quiz ../quizzes/wahrheitswerte_09.toml}}
+
+## Quiz 7: Vergleichsoperatoren
+
+{{#quiz ../quizzes/wahrheitswerte_10.toml}}
+
 ## Aufgabe 1: Volljährig per Vergleich
 
 Prüfe in der Spalte `Volljährig` mit einem Vergleich, ob die Person 18 oder älter ist.
