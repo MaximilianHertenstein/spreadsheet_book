@@ -1,19 +1,17 @@
 # Datentypen
 
-Wir haben schon diese Arten von Werten kennengelernt:
-
-- Zahlen
-- Texte
-- Wahrheitswerte
-
+In einer Tabellenkalkulation können Zellen verschiedene Datentypen enthalten.
+Der Datentyp beschreibt, um welche Art von Wert es sich handelt.
 
 ## Zahlen
 
-Zahlen können in Rechnungen verwendet werden. 
+Zahlen können für Rechnungen verwendet werden. Dazu gehören ganze Zahlen,
+negative Zahlen und Dezimalzahlen.
+
+In jeder Zeile der Tabelle wird mit einer Zahl gerechnet.
 
 <div
 	class="ods-table"
-	data-select="B1"
 	data-file="tabellen/datentypen_zahlen.ods">
 </div>
 
@@ -28,7 +26,6 @@ führen.
 
 <div
 	class="ods-table"
-	data-select="B2"
 	data-file="tabellen/datentypen_texte.ods">
 </div>
 
@@ -39,13 +36,12 @@ Ein Wahrheitswert kann nur zwei verschiedene Werte annehmen:
 * `WAHR`
 * `FALSCH`
 
-Wahrheitswerte entstehen zum Beispiel bei Vergleichen und können mit den
-Funktionen `UND` und `ODER` verknüpft werden. Sie können mit `NICHT` gewechselt werden. Mit `WENN` kann abhängig von
+Wahrheitswerte entstehen zum Beispiel durch Bedingungen und können mit den
+Funktionen `UND` und `ODER` verknüpft werden. Mit `WENN` kann abhängig von
 einem Wahrheitswert ein Text ausgegeben werden.
 
 <div
 	class="ods-table"
-	data-select="A1"
 	data-file="tabellen/datentypen_wahrheitswerte.ods">
 </div>
 
@@ -55,12 +51,10 @@ Ein Datum besteht aus Tag, Monat und Jahr. Eine Uhrzeit besteht aus Stunden,
 Minuten und Sekunden.
 
 Datums- und Zeitangaben können miteinander verglichen und berechnet werden.
-
+In der Tabelle wird außerdem die Anzahl der Tage zwischen zwei Datumsangaben
+berechnet.
 
 <div
 	class="ods-table"
-	data-select="D1"
 	data-file="tabellen/datentypen_datum.ods">
 </div>
-
-Mit den Funktionen `JAHR`, `MONAT` und `TAG` lassen sich Jahr, Monat und Tag eines Datums ermitteln.

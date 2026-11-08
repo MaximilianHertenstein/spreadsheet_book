@@ -12,6 +12,8 @@
   - [Quiz: Funktionen](./quiz_funktionen.md)
 - [Wahrheitswerte](./wahrheitswerte.md)
   - [Quiz: Wahrheitswerte](./quiz_wahrheitswerte.md)
+- [Boolesche Operatoren](./boolesche_operatoren.md)
+  - [Quiz: Boolesche Operatoren](./quiz_boolesche_operatoren.md)
 - [WENN-Funktion](./wenn_funktion.md)
   - [Quiz: WENN-Funktion](./quiz_wenn.md)
 - [S-Verweis](./s_verweis.md)
